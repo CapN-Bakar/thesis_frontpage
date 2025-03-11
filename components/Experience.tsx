@@ -7,7 +7,10 @@ const Experience = () => {
   return (
     <div className="py-20 w-full">
       <h1 className="heading">
-        My <span className="text-purple">work experience</span>
+        Our{" "}
+        <span className="text-purple" id="team">
+          Team
+        </span>
       </h1>
 
       <div className="w-full mt-12 grid lg:grid-cols-4 grid-cols-1 gap-10">
@@ -33,7 +36,7 @@ const Experience = () => {
               <img
                 src={card.thumbnail}
                 alt={card.thumbnail}
-                className="lg:w-32 md:w-20 w-16"
+                className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 object-cover rounded-lg"
               />
               <div className="lg:ms-5">
                 <h1 className="text-start text-xl md:text-2xl font-bold">
