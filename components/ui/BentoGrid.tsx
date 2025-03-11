@@ -66,13 +66,15 @@ export const BentoGridItem = ({
   };
 
   const handleCopy = async () => {
-    const text = "bakarzzz24@gmail.com";
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopied(true);
-    } catch (err) {
-      console.error("Failed to copy:", err);
-      alert("Failed to copy email. Please try manually.");
+    if (typeof window !== "undefined" && navigator.clipboard) {
+      try {
+        await navigator.clipboard.writeText("bakarzzz24@gmail.com");
+        setCopied(true);
+      } catch (err) {
+        console.error("Failed to copy:", err);
+      }
+    } else {
+      console.warn("Clipboard API not supported on the server.");
     }
   };
 

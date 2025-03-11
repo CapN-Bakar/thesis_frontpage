@@ -1,14 +1,13 @@
 "use client";
 
 import Head from "next/head";
-import * as Sentry from "@sentry/nextjs";
 
 export default function Page() {
   return (
     <div>
       <Head>
-        <title>Sentry Onboarding</title>
-        <meta name="description" content="Test Sentry for your Next.js app!" />
+        <title>Error Handling Example</title>
+        <meta name="description" content="Example error handling in Next.js" />
       </Head>
 
       <main
@@ -35,7 +34,7 @@ export default function Page() {
           </svg>
         </h1>
 
-        <p>Get started by sending us a sample error:</p>
+        <p>Click the button to simulate an error:</p>
         <button
           type="button"
           style={{
@@ -49,31 +48,19 @@ export default function Page() {
             margin: "18px",
           }}
           onClick={() => {
-            Sentry.startSpan(
-              {
-                name: "Example Frontend Span",
-                op: "test",
-              },
-              async () => {
-                const res = await fetch("/api/sentry-example-api");
-                if (!res.ok) {
-                  throw new Error("Sentry Example Frontend Error");
-                }
-              }
-            );
+            try {
+              throw new Error("Example frontend error");
+            } catch (error) {
+              console.error("Caught error:", error);
+            }
           }}
         >
           Throw error!
         </button>
 
-        <p>
-          Next, look for the error on the <a href="">Issues Page</a>.
-        </p>
         <p style={{ marginTop: "24px" }}>
-          For more information, see{" "}
-          <a href="https://docs.sentry.io/platforms/javascript/guides/nextjs/">
-            https://docs.sentry.io/platforms/javascript/guides/nextjs/
-          </a>
+          Learn more about error handling in Next.js{" "}
+          <a href="https://nextjs.org/docs/api-reference/next/error">here</a>.
         </p>
       </main>
     </div>
