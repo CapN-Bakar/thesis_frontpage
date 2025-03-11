@@ -65,10 +65,15 @@ export const BentoGridItem = ({
     },
   };
 
-  const handleCopy = () => {
+  const handleCopy = async () => {
     const text = "bakarzzz24@gmail.com";
-    navigator.clipboard.writeText(text);
-    setCopied(true);
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+      alert("Failed to copy email. Please try manually.");
+    }
   };
 
   return (
